@@ -1,0 +1,16 @@
+%{
+#include "y.tab.h"
+#include <stdlib.h>
+%}
+
+%%
+[0-9]+ { yylval = atoi(yytext); return number; }
+[0-9]*[.][0-9]+ { yylval = atof(yytext); return number; }
+[ \n\t] ;  // Ignore whitespace
+. { return yytext[0]; }
+%%
+
+int yywrap() {
+    return 1;
+}
+
